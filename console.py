@@ -10,6 +10,8 @@ class HBNBCommand(cmd.Cmd):
     """My console class"""
 
     prompt = "(hbnb) "
+    __models = {"BaseModel", "User", "State", "City", "Place", "Amenity",
+        "Review"}
     def do_quit(self, args):
         """Quit command to exit the program
         """
@@ -25,24 +27,32 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """Creates a new instance of a class"""
-        args = args.split()
         if not args[0]:
             print("** class name missing **")
             return
-        try:
-            obj = eval(args[0])
-            obj.save()
-            print(obj.id)
-        except Exception:
+        args = args.split()
+        if args[0] not in self.__models:
             print("** class doesn't exist **")
+            return
+
+        obj = eval(args[0])
+        obj.save()
+        print(obj.id)
 
     def do_show(self, args):
         """
         Prints the string representation of an
         instance based on the class name and id.
         """
+        if not args[0]:
+            print("** class name missing **")
+            return
+        args = args.split()
+        if args[0] not in self.__models:
+            print("** class doesn't exist **")
+            return
         pass
-
+            
     def do_destroy(self, args):
         """
         Deletes an instance based on the class name and id
