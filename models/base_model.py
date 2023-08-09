@@ -3,6 +3,7 @@
 """ Base model """
 import datetime
 import uuid
+import models 
 
 class BaseModel():
     """ BaseModel class """
@@ -12,6 +13,11 @@ class BaseModel():
         if not kwargs:
             self.id= str(uuid.uuid4())
             self.updated_at= self.created_at=datetime.datetime.now()
+            # print(self.to_dict())
+            # print( "????????????????????????????????????")
+      
+            models.storage.new(self)
+
         else:
             for key, val in kwargs.items():
                 if key != "__class__":
@@ -25,6 +31,7 @@ class BaseModel():
             
     def save(self):
         self.updated_at = datetime.datetime.now()
+        models.storage.save()
         
     def to_dict(self):
         my_dict = self.__dict__.copy()
