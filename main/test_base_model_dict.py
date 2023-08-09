@@ -2,6 +2,8 @@
 from sys import path
 path.append('../AirBnB_clone')
 from models.base_model import BaseModel
+from models.user import User
+
 
 my_model = BaseModel()
 my_model.name = "My_First_Model"
