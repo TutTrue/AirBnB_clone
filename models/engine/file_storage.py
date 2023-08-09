@@ -3,6 +3,8 @@
 """ File storage model """
 import json
 from models.base_model import BaseModel
+from models.user import User
+
 
 class FileStorage ():
 
@@ -52,8 +54,13 @@ class FileStorage ():
             with open(self.__file_path, "r", encoding='utf-8') as f:
                 json_objs = json.load(f)
                 
+            models = {'User' : User,'BaseModel' : BaseModel}
             for key, val in json_objs.items():
-                self.__objects[key] = BaseModel(**val) 
+                constractor=val["__class__"]
+                for model,cls in models.items():
+                    if constractor == model:
+                        self.__objects[key] = cls(**val)
+                
                 
         except FileNotFoundError:
             pass       
