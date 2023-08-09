@@ -2,9 +2,6 @@
 
 """ User model """
 from models.base_model import BaseModel
-import datetime
-import uuid
-import models 
 
 class User(BaseModel):
     """ User class """
@@ -13,6 +10,6 @@ class User(BaseModel):
     password =""
     first_name =""
     last_name = ""
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
     
