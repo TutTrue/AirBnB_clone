@@ -6,6 +6,7 @@
 
 import cmd
 from models.engine import file_storage
+from models import storage
 from models import FileStorage
 from models.user import User
 from models.user import BaseModel
@@ -112,8 +113,48 @@ class HBNBCommand(cmd.Cmd):
         """
         Updates an instance based on the class name and id
         by adding or updating attribute (save the change into the JSON file)
+        Usage: update <class name> <id> <attribute name> "<attribute value>"
         """
-        pass
+        objs = FileStorage().all()
+        if not args:
+            print("** class name missing **")
+            return
+        args = args.split()
+        if args[0] not in self.__models:
+            print("** class doesn't exist **")
+            return
+        if len(args) < 2:
+            print("** instance id missing **")
+            return
+        if f"{args[0]}.{args[1]}" not in objs:
+            print("** no instance found **")
+            return
+        if len(args) < 3:
+            print("** attribute name missing **")
+            return
+        if len(args) < 4:
+            print("** value missing **")
+            return
+        
+            # check if the value is int, float or string
+        if args[3].isdigit():
+            a_value = int(args[3])
+        else:
+            try:
+                a_value = float(args[3])
+            except ValueError:
+                a_value = args[3][1:-1]
+
+        for key, obj in objs.items():
+            if f"{args[0]}.{args[1]}" == key:
+                setattr(obj, args[2], a_value)
+                storage.save()
+                return
+
+        #print(f"{objs[id_]} - {args[2]} - {args[3]}")
+        #setattr(objs[objs[0]], args[2], args[3])
+        #storage.save()
+        
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
