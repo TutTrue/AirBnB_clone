@@ -176,20 +176,18 @@ class HBNBCommand(cmd.Cmd):
                 self.do_destroy(f"{cls} {mthd[9:-2]}")
 
             elif mthd[0:6] == "update":
-                id,attr =mthd[7:-1].split(",", 1)
-                id=id.split('"')[1]
+                id, attr = mthd[7:-1].split(",", 1)
+                id = id.split('"')[1]
                 try:
                     att =json.loads(attr.replace("'" , '"'))
                     print(att)
-                    for k,v in att.items():
+                    for k, v in att.items():
                             print(f"{cls} {id} {k} {v}")
                             self.do_update(f"{cls} {id} {k} {v}")
-                except Exception as e:
-                    attr,val = attr.split(',')
-                    attr =attr.split('"')[1]
+                except Exception:
+                    attr, val = attr.split(',')
+                    attr = attr.split('"')[1]
                     self.do_update(f"{cls} {id} {attr} {val}")
-                    
-                
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
