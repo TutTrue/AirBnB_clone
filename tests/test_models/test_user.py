@@ -1,21 +1,18 @@
 #!/usr/bin/python3
-"""Unittest for base model
+"""Unittest for User model
 """
 import unittest
 from models.user import User
-from models.base_model import BaseModel
-from models import storage
-from datetime import datetime
 
 
-class TestConstructor(unittest.TestCase):
+class Test_User_model(unittest.TestCase):
     """
-    test class for the max_integer() function.
+    test class for the User model.
     """
 
-    def test_create_instance_without_kwargs(self):
+    def test_default_value_instance(self):
         """
-        create an instance of class without kwargs
+        test the default values for the User model
         """
         user = User()
         self.assertEqual(user.email, "")
