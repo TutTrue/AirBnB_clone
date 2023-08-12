@@ -9,4 +9,5 @@ class State(BaseModel):
     name = ""
 
     def __init__(self, *args, **kwargs):
+        """init the state class"""
         super().__init__(*args, **kwargs)

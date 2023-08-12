@@ -25,6 +25,7 @@ class FileStorage():
     __objects = {}
 
     def __init__(self):
+        """do nothing"""
         pass
 
     def all(self):

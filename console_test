@@ -1,0 +1,7 @@
+update
+update MyMOdel
+update BaseModel
+update BaseModel e8ca6702-35fe-4ffa-a650-9edafce8101c
+update BaseModel e8ca6702-35fe-4ffa-a650-9edafce8101c first_name
+update BaseModel e8ca6702-35fe-4ffa-a650-9edafce8101c first_name "ahmed"
+show BaseModel e8ca6702-35fe-4ffa-a650-9edafce8101c

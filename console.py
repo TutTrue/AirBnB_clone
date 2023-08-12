@@ -17,12 +17,17 @@ class HBNBCommand(cmd.Cmd):
                 "Review"}
 
     def do_quit(self, args):
-        """Quit command to exit the program
+        """
+        Quit command to exit the program
+        Usage: quit
         """
         return True
 
     def do_EOF(self, args):
-        """Quit command to exit the program"""
+        """
+        Quit command to exit the program
+        Usage: ctrl + d
+        """
         return True
 
     def emptyline(self):
@@ -30,7 +35,10 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, args):
-        """Creates a new instance of a class"""
+        """
+        Creates a new instance of a class
+        Usage: create <Class Name>
+        """
         if not args:
             print("** class name missing **")
             return
@@ -47,6 +55,7 @@ class HBNBCommand(cmd.Cmd):
         """
         Prints the string representation of an
         instance based on the class name and id.
+        Usage: show <Class Name> <ID>
         """
         if not args:
             print("** class name missing **")
@@ -66,6 +75,7 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, args):
         """
         Deletes an instance based on the class name and id
+        Usage: destroy <Class Name> <ID>
         """
         if not args:
             print("** class name missing **")
@@ -87,6 +97,8 @@ class HBNBCommand(cmd.Cmd):
         """
         Prints all string representation of all
         instances based or not on the class name.
+        Usage: all
+        Usage: all <Class Name>
         """
         objs = storage.all()
         if not args:
@@ -144,9 +156,16 @@ class HBNBCommand(cmd.Cmd):
                 return
 
     def default(self, line):
+        """
+        handle dot notaion commands
+        functions:
+            - update, all, show, destroy, count
+        """
         if '.' in line:
             objs = storage.all()
             cls, mthd = line.split('.')
+
+            # usage: <class name>.all()
             if mthd == "all()":
                 print("[", end="")
                 for obj in objs.values():
@@ -154,6 +173,7 @@ class HBNBCommand(cmd.Cmd):
                         print(obj, end="")
                 print("]")
 
+            # usage: <class name>.count()
             elif mthd == "count()":
                 all = []
                 for obj in objs.values():
@@ -161,12 +181,16 @@ class HBNBCommand(cmd.Cmd):
                         all.append(obj)
                 print(len(all))
 
+            # usage: <class name>.show(<ID>)
             elif mthd[0:4] == "show":
                 self.do_show(f"{cls} {mthd[6:-2]}")
 
+            # usage: <class name>.destroy(<ID>)
             elif mthd[0:7] == "destroy":
                 self.do_destroy(f"{cls} {mthd[9:-2]}")
 
+            # usage: <class name>.update(<id>, <attr name>, <attr value>)
+            # usage: <class name>.update(<id>, <dictionary representation>)
             elif mthd[0:6] == "update":
                 id, attr = mthd[7:-1].split(",", 1)
                 id = id.split('"')[1]
