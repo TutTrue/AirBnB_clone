@@ -10,7 +10,7 @@ from models import storage
 from models import FileStorage
 from models.user import User
 from models.user import BaseModel
-
+import json
 class HBNBCommand(cmd.Cmd):
     """My console class"""
 
@@ -40,9 +40,9 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
 
-        obj = eval(args[0])()
-        print(obj.id)
+        obj = eval(args[0])() # eval creates an instance
         obj.save()
+        print(obj.id)
 
     def do_show(self, args):
         """
@@ -136,25 +136,60 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return
         
-            # check if the value is int, float or string
+            # cast the value to the right type
         if args[3].isdigit():
             a_value = int(args[3])
         else:
             try:
                 a_value = float(args[3])
             except ValueError:
-                a_value = args[3][1:-1]
-
+                a_value = args[3].replace('"' , "")
         for key, obj in objs.items():
             if f"{args[0]}.{args[1]}" == key:
                 setattr(obj, args[2], a_value)
                 storage.save()
                 return
 
-        #print(f"{objs[id_]} - {args[2]} - {args[3]}")
-        #setattr(objs[objs[0]], args[2], args[3])
-        #storage.save()
         
+    def onecmd(self, line):
+        if '.' in line:
+            objs = FileStorage().all()
+            cls, mthd = line.split('.')
+            if mthd == "all()":
+                print ("[" ,end ="")
+                for obj in objs.values():
+                    if obj.__class__.__name__ == cls:                        
+                        print(obj, end ="")     
+                print("]")
+                
+            elif mthd == "count()":
+                all = []
+                for obj in objs.values():
+                    if obj.__class__.__name__ == cls:
+                        all.append(obj)
+                print(len(all))
+            
+            elif mthd[0:4] =="show":
+                self.do_show(f"{cls} {mthd[6:-2]}")
+                
+            elif mthd[0:7] == "destroy":
+                self.do_destroy(f"{cls} {mthd[9:-2]}")
+
+            elif mthd[0:6] == "update":
+                id,attr =mthd[7:-1].split(",", 1)
+                id=id.split('"')[1]
+                try:
+                    att =json.loads(attr.replace("'" , '"'))
+                    print(att)
+                    for k,v in att.items():
+                            print(f"{cls} {id} {k} {v}")
+                            self.do_update(f"{cls} {id} {k} {v}")
+                except Exception as e:
+                    attr,val = attr.split(',')
+                    attr =attr.split('"')[1]
+                    self.do_update(f"{cls} {id} {attr} {val}")
+                    
+                
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
