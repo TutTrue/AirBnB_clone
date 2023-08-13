@@ -106,5 +106,19 @@
         "created_at": "2023-08-13T00:14:50.168141",
         "updated_at": "2023-08-13T00:14:50.168148",
         "__class__": "Amenity"
+    },
+    "BaseModel.c641366e-f61b-4e9a-bcb2-7c739d5b7a2b": {
+        "id": "c641366e-f61b-4e9a-bcb2-7c739d5b7a2b",
+        "created_at": "2023-08-13T10:55:40.350621",
+        "updated_at": "2023-08-13T10:55:40.355345",
+        "name": "My First Model",
+        "my_number": 90,
+        "__class__": "BaseModel"
+    },
+    "Amenity.ea030d1f-aa43-40c8-afef-5073ffe3f114": {
+        "id": "ea030d1f-aa43-40c8-afef-5073ffe3f114",
+        "created_at": "2023-08-13T10:55:40.354980",
+        "updated_at": "2023-08-13T10:55:40.354984",
+        "__class__": "Amenity"
     }
 }

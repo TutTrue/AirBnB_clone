@@ -13,4 +13,4 @@ class Test_State_model(unittest.TestCase):
     def test_default_values(self):
         """test a default values for the state model"""
         state = State()
-        self.assertEqual(self.state.name, "")
+        self.assertEqual(state.name, "")
