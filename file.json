@@ -64,5 +64,75 @@
         "created_at": "2023-08-12T12:24:51.356950",
         "updated_at": "2023-08-12T12:24:51.356963",
         "__class__": "User"
+    },
+    "BaseModel.99b8166c-4af8-463d-aac3-be9a6132c4ad": {
+        "id": "99b8166c-4af8-463d-aac3-be9a6132c4ad",
+        "created_at": "2023-08-13T10:38:46.372047",
+        "updated_at": "2023-08-13T10:38:46.452360",
+        "name": "My First Model",
+        "my_number": 90,
+        "__class__": "BaseModel"
+    },
+    "Amenity.1f182fbd-7577-4c6d-8ca6-6c80eec147a7": {
+        "id": "1f182fbd-7577-4c6d-8ca6-6c80eec147a7",
+        "created_at": "2023-08-13T10:38:46.451259",
+        "updated_at": "2023-08-13T10:38:46.451271",
+        "__class__": "Amenity"
+    },
+    "BaseModel.866f9e40-42d8-46a8-aede-1221e4caca66": {
+        "id": "866f9e40-42d8-46a8-aede-1221e4caca66",
+        "created_at": "2023-08-13T10:39:13.373101",
+        "updated_at": "2023-08-13T10:39:13.376573",
+        "name": "My First Model",
+        "my_number": 90,
+        "__class__": "BaseModel"
+    },
+    "Amenity.faeadc6c-192a-4895-ac0b-16d7c0099216": {
+        "id": "faeadc6c-192a-4895-ac0b-16d7c0099216",
+        "created_at": "2023-08-13T10:39:13.376159",
+        "updated_at": "2023-08-13T10:39:13.376163",
+        "__class__": "Amenity"
+    },
+    "BaseModel.f2a0953f-9137-40c9-a32e-561cc1b9f637": {
+        "id": "f2a0953f-9137-40c9-a32e-561cc1b9f637",
+        "created_at": "2023-08-13T10:40:58.743535",
+        "updated_at": "2023-08-13T10:40:58.746294",
+        "name": "My First Model",
+        "my_number": 89,
+        "__class__": "BaseModel"
+    },
+    "Amenity.3f0c42e3-6b4b-4ff7-bb7f-83ed1cb2e214": {
+        "id": "3f0c42e3-6b4b-4ff7-bb7f-83ed1cb2e214",
+        "created_at": "2023-08-13T10:40:58.745983",
+        "updated_at": "2023-08-13T10:40:58.745985",
+        "__class__": "Amenity"
+    },
+    "BaseModel.e3f7cd18-c6e8-41bf-b766-d9f310f0701f": {
+        "id": "e3f7cd18-c6e8-41bf-b766-d9f310f0701f",
+        "created_at": "2023-08-13T10:42:27.127901",
+        "updated_at": "2023-08-13T10:42:27.130760",
+        "name": "My First Model",
+        "my_number": 90,
+        "__class__": "BaseModel"
+    },
+    "Amenity.761ff5c9-6b42-4bf9-aebf-3fbb0599ec8b": {
+        "id": "761ff5c9-6b42-4bf9-aebf-3fbb0599ec8b",
+        "created_at": "2023-08-13T10:42:27.130466",
+        "updated_at": "2023-08-13T10:42:27.130469",
+        "__class__": "Amenity"
+    },
+    "BaseModel.3856893e-377b-41b9-ac3f-b465051f3280": {
+        "id": "3856893e-377b-41b9-ac3f-b465051f3280",
+        "created_at": "2023-08-13T10:43:04.806976",
+        "updated_at": "2023-08-13T10:43:04.809978",
+        "name": "My First Model",
+        "my_number": 90,
+        "__class__": "BaseModel"
+    },
+    "Amenity.0e584351-0096-4bbc-837c-5e71217575d7": {
+        "id": "0e584351-0096-4bbc-837c-5e71217575d7",
+        "created_at": "2023-08-13T10:43:04.809742",
+        "updated_at": "2023-08-13T10:43:04.809744",
+        "__class__": "Amenity"
     }
 }
