@@ -64,5 +64,47 @@
         "created_at": "2023-08-12T12:24:51.356950",
         "updated_at": "2023-08-12T12:24:51.356963",
         "__class__": "User"
+    },
+    "BaseModel.ed988393-1ebb-4c84-832b-451dbdcfa223": {
+        "id": "ed988393-1ebb-4c84-832b-451dbdcfa223",
+        "created_at": "2023-08-13T00:13:10.550063",
+        "updated_at": "2023-08-13T00:13:10.573666",
+        "name": "My First Model",
+        "my_number": 90,
+        "__class__": "BaseModel"
+    },
+    "Amenity.f7815bf2-7305-4ed4-a744-e592c6b2d77d": {
+        "id": "f7815bf2-7305-4ed4-a744-e592c6b2d77d",
+        "created_at": "2023-08-13T00:13:10.572731",
+        "updated_at": "2023-08-13T00:13:10.572734",
+        "__class__": "Amenity"
+    },
+    "BaseModel.d7bdf254-9465-43fa-b6c3-4dc33ae1da3e": {
+        "id": "d7bdf254-9465-43fa-b6c3-4dc33ae1da3e",
+        "created_at": "2023-08-13T00:14:13.415233",
+        "updated_at": "2023-08-13T00:14:13.426374",
+        "name": "My First Model",
+        "my_number": 90,
+        "__class__": "BaseModel"
+    },
+    "Amenity.b09b1f03-2fe0-4158-882b-3c706113e94e": {
+        "id": "b09b1f03-2fe0-4158-882b-3c706113e94e",
+        "created_at": "2023-08-13T00:14:13.422911",
+        "updated_at": "2023-08-13T00:14:13.422933",
+        "__class__": "Amenity"
+    },
+    "BaseModel.2b11e8ba-10dc-4886-8ecc-534d82c7e74b": {
+        "id": "2b11e8ba-10dc-4886-8ecc-534d82c7e74b",
+        "created_at": "2023-08-13T00:14:50.154909",
+        "updated_at": "2023-08-13T00:14:50.169409",
+        "name": "My First Model",
+        "my_number": 90,
+        "__class__": "BaseModel"
+    },
+    "Amenity.d1ea8db9-5325-4bdd-968b-86ee6f7e4759": {
+        "id": "d1ea8db9-5325-4bdd-968b-86ee6f7e4759",
+        "created_at": "2023-08-13T00:14:50.168141",
+        "updated_at": "2023-08-13T00:14:50.168148",
+        "__class__": "Amenity"
     }
 }
