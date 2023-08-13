@@ -41,7 +41,6 @@ class TestBaseModel(unittest.TestCase):
         self.assertNotEqual(new_b, self.b)
         self.assertDictEqual(new_b.__dict__, self.b.__dict__)
 
-
     def test_save(self):
         """"
             test save class method
