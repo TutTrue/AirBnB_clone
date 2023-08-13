@@ -2,7 +2,10 @@
 """Unittest for FileStorage model
 """
 from datetime import datetime
+from sre_parse import State
 import unittest
+from models.city import City
+from models.amenity import Amenity
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 import models
@@ -12,6 +15,10 @@ from models import storage
 
 import os
 import unittest
+from models.place import Place
+from models.review import Review
+
+from models.user import User
 
 
 class Test_FileStorage_model(unittest.TestCase):
@@ -31,12 +38,27 @@ class Test_FileStorage_model(unittest.TestCase):
         objs = storage.all()
         obj = objs[f"{base.__class__.__name__}.{base.id}"]
         self.assertEqual(base, obj)
+        self.assertIsInstance(storage, FileStorage)
 
-        self.assertIsInstance(models.storage, FileStorage)
-        
         with open("file.json", "r", encoding='utf-8') as f:
-            json_objs = json.load(f)[f"{base.__class__.__name__}.{base.id}"]
-        self.assertEqual(base.to_dict(), json_objs)
+            json_objs = json.load(f)
+            json_obj = json_objs[f"{base.__class__.__name__}.{base.id}"]
+        self.assertEqual(base.to_dict(), json_obj)
+        storage.reload()
+        models = {
+                'User': User,
+                'BaseModel': BaseModel,
+                'State': State,
+                'City': City,
+                'Amenity': Amenity,
+                'Place': Place,
+                'Review': Review
+            }
+        for key, val in json_objs.items():
+            constractor = val["__class__"]
+            for model, cls in models.items():
+                if constractor == model:
+                    self.assertEqual(str(objs[key]), str(cls(**val)))
         """"
             test save class method
         """
@@ -47,7 +69,6 @@ class Test_FileStorage_model(unittest.TestCase):
         self.assertNotEqual(before_update_time, after_update_time)
         new_number = obj.my_number
         self.assertEqual(new_number, 90)
-
 
 
 class TestBaseModel(unittest.TestCase):
@@ -116,5 +137,3 @@ class TestBaseModel(unittest.TestCase):
         """
         s = f"[{self.b.__class__.__name__}] ({self.b.id}) {self.b.__dict__}"
         self.assertEqual(self.b.__str__(), s)
- 
-            
