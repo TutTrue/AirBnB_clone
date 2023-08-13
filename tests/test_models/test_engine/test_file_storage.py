@@ -6,6 +6,7 @@ import unittest
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 import models
+import json
 from models import storage
 
 
@@ -32,6 +33,10 @@ class Test_FileStorage_model(unittest.TestCase):
         self.assertEqual(base, obj)
 
         self.assertIsInstance(models.storage, FileStorage)
+        
+        with open("file.json", "r", encoding='utf-8') as f:
+            json_objs = json.load(f)[f"{base.__class__.__name__}.{base.id}"]
+        self.assertEqual(base.to_dict(), json_objs)
         """"
             test save class method
         """
@@ -42,6 +47,7 @@ class Test_FileStorage_model(unittest.TestCase):
         self.assertNotEqual(before_update_time, after_update_time)
         new_number = obj.my_number
         self.assertEqual(new_number, 90)
+
 
 
 class TestBaseModel(unittest.TestCase):
@@ -110,3 +116,5 @@ class TestBaseModel(unittest.TestCase):
         """
         s = f"[{self.b.__class__.__name__}] ({self.b.id}) {self.b.__dict__}"
         self.assertEqual(self.b.__str__(), s)
+ 
+            
