@@ -59,6 +59,9 @@ class Test_FileStorage_model(unittest.TestCase):
             for model, cls in models.items():
                 if constractor == model:
                     self.assertEqual(str(objs[key]), str(cls(**val)))
+        cls = base.to_dict()['__class__']
+        self.assertEqual(str(obj), str(models[cls](**obj.to_dict())))
+
         """"
             test save class method
         """
