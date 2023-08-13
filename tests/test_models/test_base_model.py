@@ -62,8 +62,8 @@ class TestBaseModel(unittest.TestCase):
         after_update_time = self.base.updated_at
         self.assertNotEqual(before_update_time, after_update_time)
         all_objects = storage.all()
-        new_number = all_objects[self.base.__class__.__name__ +
-                                    "." + self.base.id]["my_number"]
+        obj = all_objects[f"{self.base.__class__.__name__}.{self.base.id}"]
+        new_number = obj.my_number
         self.assertEqual(new_number, 90)
 
     def test_str(self):
@@ -72,6 +72,6 @@ class TestBaseModel(unittest.TestCase):
 
             check for string representaion
         """
-        n = self.base.__class__.__name__
-        expected_str = f"[{n}] ({self.base.id}) <{self.base.__dict__}>"
+        expected_str = f"[{self.base.__class__.__name__}]\
+                            ({self.base.id}) {self.base.__dict__}"
         self.assertEqual(self.base.__str__(), expected_str)
