@@ -76,7 +76,7 @@ class Test_FileStorage_model(unittest.TestCase):
 
 class TestBaseModel(unittest.TestCase):
     """
-    test class for the max_integer() function.
+    test class for the BaseModel model.
     """
     b = BaseModel()
     b.name = "My First Model"
