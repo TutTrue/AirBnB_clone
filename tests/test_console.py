@@ -4,7 +4,7 @@
 import unittest
 from console import HBNBCommand
 import unittest
-from console import HBNBCommand
+
 from unittest.mock import patch
 from io import StringIO
 from models.user import User
@@ -83,3 +83,50 @@ class Test_Console(unittest.TestCase):
                 "Usage: update <class name> <id> <attribute name>" +
                 " \"<attribute value>\"\n        \n",
                 f.getvalue())
+
+    def test_emptyline(self):
+        """test the empty line and enter command"""
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("")
+            self.assertEqual("", f.getvalue())
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("\n")
+            self.assertEqual("", f.getvalue())
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("random command")
+            self.assertEqual("", f.getvalue())
+
+    def test_quit(self):
+        """test quit command"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("quit")
+            self.assertEqual("", f.getvalue())
+
+    def test_EOF(self):
+        """test EOF command"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("EOF")
+            self.assertEqual("", f.getvalue())
+
+    def test_create(self):
+        """test create function"""
+        pass
+
+    def test_show(self):
+        """test all function"""
+        pass
+
+    def test_all(self):
+        """test all function"""
+        pass
+
+    def test_destroy(self):
+        """test destroy function"""
+        pass
+
+    def test_update(self):
+        """test update function"""
+        pass
