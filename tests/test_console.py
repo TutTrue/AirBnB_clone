@@ -121,6 +121,10 @@ class Test_Console(unittest.TestCase):
             HBNBCommand().onecmd("create Mahmoud")
             self.assertEqual("** class doesn't exist **\n", f.getvalue())
 
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("create User")
+            self.assertNotEqual(f.getvalue(), '')
+
     def test_show(self):
         """test all function"""
         with patch('sys.stdout', new=StringIO()) as f:
@@ -135,11 +139,35 @@ class Test_Console(unittest.TestCase):
             HBNBCommand().onecmd("show User 123")
             self.assertEqual("** no instance found **\n", f.getvalue())
 
+        with patch('sys.stdout', new=StringIO()) as f:
+            u = User()
+            storage.new(u)
+            storage.save()
+            cmd = f"show User {u.id}"
+            HBNBCommand().onecmd(cmd)
+            self.assertNotEqual(f.getvalue(), '')
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd(f"User.show(\"{u.id}\")")
+            self.assertNotEqual(f.getvalue(), '')
+
     def test_all(self):
         """test all function"""
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("all Mahmoud")
             self.assertEqual("** class doesn't exist **\n", f.getvalue())
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("all")
+            self.assertNotEqual(f.getvalue(), '')
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("all User")
+        self.assertNotEqual(f.getvalue(), '')
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("City.all()")
+        self.assertNotEqual(f.getvalue(), '')
 
     def test_destroy(self):
         """test destroy function"""
@@ -152,7 +180,18 @@ class Test_Console(unittest.TestCase):
             self.assertEqual("** class doesn't exist **\n", f.getvalue())
 
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("show User 123")
+            HBNBCommand().onecmd("destroy User")
+            self.assertEqual("** instance id missing **\n", f.getvalue())
+
+        u = User()
+        storage.new(u)
+        storage.save()
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd(f"User.destroy(\"{u.id}\")")
+            self.assertEqual("", f.getvalue())
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("destroy User 123")
             self.assertEqual("** no instance found **\n", f.getvalue())
 
     def test_update(self):
@@ -170,18 +209,53 @@ class Test_Console(unittest.TestCase):
             self.assertEqual("** no instance found **\n", f.getvalue())
 
         with patch('sys.stdout', new=StringIO()) as f:
-            cmd = "update User 4c9a0d9f-02b1-40f8-9b55-9fe44b18799b"
+            b = BaseModel()
+            cmd = f"update BaseModel {b.id}"
             HBNBCommand().onecmd(cmd)
             self.assertEqual("** attribute name missing **\n", f.getvalue())
 
         with patch('sys.stdout', new=StringIO()) as f:
-            cmd = "update User 4c9a0d9f-02b1-40f8-9b55-9fe44b18799b" + \
-                " first_name"
+            cmd = f"update BaseModel {b.id} first_name"
             HBNBCommand().onecmd(cmd)
             self.assertEqual("** value missing **\n", f.getvalue())
 
         with patch('sys.stdout', new=StringIO()) as f:
-            cmd = "update User 4c9a0d9f-02b1-40f8-9b55-9fe44b18799b " + \
-                "first_name 'TutTrueee'"
+            cmd = f"update BaseModel {b.id} first_name 'TutTrueee'"
             HBNBCommand().onecmd(cmd)
             self.assertEqual("", f.getvalue())
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            cmd = f"BaseModel.update(\"{b.id}\",\"first_name\",\"TutTrueee\")"
+            HBNBCommand().onecmd(cmd)
+            self.assertEqual("", f.getvalue())
+
+    def test_count(self):
+        """test the count function"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            u = User()
+            storage.new(u)
+            storage.save()
+            HBNBCommand().onecmd("User.count()")
+            self.assertNotEqual(0, f.getvalue())
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("invalid.count()")
+            self.assertEqual("0\n", f.getvalue())
+
+    def test_docstrings(self):
+        """Testing docstrings
+        """
+        self.assertIsNotNone(console.__doc__)
+        self.assertIsNotNone(HBNBCommand().do_quit.__doc__)
+        self.assertIsNotNone(HBNBCommand().do_EOF.__doc__)
+        self.assertIsNotNone(HBNBCommand().emptyline.__doc__)
+        self.assertIsNotNone(HBNBCommand().do_create.__doc__)
+        self.assertIsNotNone(HBNBCommand().do_all.__doc__)
+        self.assertIsNotNone(HBNBCommand().do_show.__doc__)
+        self.assertIsNotNone(HBNBCommand().do_destroy.__doc__)
+        self.assertIsNotNone(HBNBCommand().do_update.__doc__)
+        self.assertIsNotNone(HBNBCommand().default.__doc__)
+
+
+if __name__ == "__main__":
+    unittest.main()
