@@ -5418,5 +5418,64 @@
         "created_at": "2023-08-14T04:57:36.609064",
         "updated_at": "2023-08-14T04:57:36.609070",
         "__class__": "BaseModel"
+    },
+    "BaseModel.a74a4c23-679a-4a63-896b-556df8c72d18": {
+        "id": "a74a4c23-679a-4a63-896b-556df8c72d18",
+        "created_at": "2023-08-14T05:08:31.479862",
+        "updated_at": "2023-08-14T05:08:31.547540",
+        "name": "My First Model",
+        "my_number": 90,
+        "__class__": "BaseModel"
+    },
+    "BaseModel.67ea3465-59dc-4387-896d-5b360f615a3e": {
+        "id": "67ea3465-59dc-4387-896d-5b360f615a3e",
+        "created_at": "2023-08-14T05:08:31.480688",
+        "updated_at": "2023-08-14T05:08:31.555735",
+        "name": "My First Model",
+        "my_number": 90,
+        "__class__": "BaseModel"
+    },
+    "User.14fd92d9-890c-4d94-a207-1facca3e4741": {
+        "id": "14fd92d9-890c-4d94-a207-1facca3e4741",
+        "created_at": "2023-08-14T05:08:31.486848",
+        "updated_at": "2023-08-14T05:08:31.486851",
+        "__class__": "User"
+    },
+    "User.9ce4d9fd-be91-44e4-92a4-b138f11746ea": {
+        "id": "9ce4d9fd-be91-44e4-92a4-b138f11746ea",
+        "created_at": "2023-08-14T05:08:31.494944",
+        "updated_at": "2023-08-14T05:08:31.494953",
+        "__class__": "User"
+    },
+    "User.7961fdc2-8b42-4b20-bcda-1ba233926c6a": {
+        "id": "7961fdc2-8b42-4b20-bcda-1ba233926c6a",
+        "created_at": "2023-08-14T05:08:31.521881",
+        "updated_at": "2023-08-14T05:08:31.521885",
+        "__class__": "User"
+    },
+    "BaseModel.86d955a3-bdba-46a7-8d5d-bf6a006ae1bc": {
+        "id": "86d955a3-bdba-46a7-8d5d-bf6a006ae1bc",
+        "created_at": "2023-08-14T05:08:31.531025",
+        "updated_at": "2023-08-14T05:08:31.531029",
+        "first_name": "TutTrueee",
+        "__class__": "BaseModel"
+    },
+    "Amenity.f086c9a3-19fc-4a1e-a097-45e47e925a69": {
+        "id": "f086c9a3-19fc-4a1e-a097-45e47e925a69",
+        "created_at": "2023-08-14T05:08:31.547023",
+        "updated_at": "2023-08-14T05:08:31.547028",
+        "__class__": "Amenity"
+    },
+    "City.5fc15b02-815d-4e81-a80c-1e8e0dbf25fd": {
+        "id": "5fc15b02-815d-4e81-a80c-1e8e0dbf25fd",
+        "created_at": "2023-08-14T05:08:31.555464",
+        "updated_at": "2023-08-14T05:08:31.555468",
+        "__class__": "City"
+    },
+    "BaseModel.c3592dc0-5f7f-453f-afa3-de2c35e4e918": {
+        "id": "c3592dc0-5f7f-453f-afa3-de2c35e4e918",
+        "created_at": "2023-08-14T05:08:31.565684",
+        "updated_at": "2023-08-14T05:08:31.565693",
+        "__class__": "BaseModel"
     }
 }

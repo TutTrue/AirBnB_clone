@@ -5,6 +5,7 @@ import unittest
 from console import HBNBCommand
 import unittest
 
+import console
 from unittest.mock import patch
 from io import StringIO
 from models.user import User
@@ -243,8 +244,7 @@ class Test_Console(unittest.TestCase):
             self.assertEqual("0\n", f.getvalue())
 
     def test_docstrings(self):
-        """Testing docstrings
-        """
+        """ test doc string for console module"""
         self.assertIsNotNone(console.__doc__)
         self.assertIsNotNone(HBNBCommand().do_quit.__doc__)
         self.assertIsNotNone(HBNBCommand().do_EOF.__doc__)
