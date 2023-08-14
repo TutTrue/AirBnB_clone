@@ -203,9 +203,7 @@ class HBNBCommand(cmd.Cmd):
                 id = id.split('"')[1]
                 try:
                     att = json.loads(attr.replace("'", '"'))
-                    print(att)
                     for k, v in att.items():
-                        print(f"{cls} {id} {k} {v}")
                         self.do_update(f"{cls} {id} {k} {v}")
                 except Exception:
                     attr, val = attr.split(',')

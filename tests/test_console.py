@@ -113,20 +113,75 @@ class Test_Console(unittest.TestCase):
 
     def test_create(self):
         """test create function"""
-        pass
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("create")
+            self.assertEqual("** class name missing **\n", f.getvalue())
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("create Mahmoud")
+            self.assertEqual("** class doesn't exist **\n", f.getvalue())
 
     def test_show(self):
         """test all function"""
-        pass
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("show")
+            self.assertEqual("** class name missing **\n", f.getvalue())
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("show Mahmoud")
+            self.assertEqual("** class doesn't exist **\n", f.getvalue())
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("show User 123")
+            self.assertEqual("** no instance found **\n", f.getvalue())
 
     def test_all(self):
         """test all function"""
-        pass
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("all Mahmoud")
+            self.assertEqual("** class doesn't exist **\n", f.getvalue())
 
     def test_destroy(self):
         """test destroy function"""
-        pass
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("destroy")
+            self.assertEqual("** class name missing **\n", f.getvalue())
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("destroy Sara")
+            self.assertEqual("** class doesn't exist **\n", f.getvalue())
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("show User 123")
+            self.assertEqual("** no instance found **\n", f.getvalue())
 
     def test_update(self):
         """test update function"""
-        pass
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("update")
+            self.assertEqual("** class name missing **\n", f.getvalue())
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("update Sara")
+            self.assertEqual("** class doesn't exist **\n", f.getvalue())
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("update User 123")
+            self.assertEqual("** no instance found **\n", f.getvalue())
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            cmd = "update User 4c9a0d9f-02b1-40f8-9b55-9fe44b18799b"
+            HBNBCommand().onecmd(cmd)
+            self.assertEqual("** attribute name missing **\n", f.getvalue())
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            cmd = "update User 4c9a0d9f-02b1-40f8-9b55-9fe44b18799b" + \
+                " first_name"
+            HBNBCommand().onecmd(cmd)
+            self.assertEqual("** value missing **\n", f.getvalue())
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            cmd = "update User 4c9a0d9f-02b1-40f8-9b55-9fe44b18799b " + \
+                "first_name 'TutTrueee'"
+            HBNBCommand().onecmd(cmd)
+            self.assertEqual("", f.getvalue())
